@@ -11,7 +11,7 @@ selTematica db ?
 ;         db "A",13,10
 ;         db "B",13,10
 ;         db "Seleccione matriz: $" 
-;selMAtriz db ?
+;selMatriz db ?
 ;txtIngreso db "Ingrese palabra encontrada o 'retirar': $" 
 ;txtSalida db "RETIRAR$"
 
