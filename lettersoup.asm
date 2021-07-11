@@ -11,8 +11,15 @@ opVariante db  "Existen 2 tipos de variante disponibles",13,10
            db "1.Variante A",13,10
            db "2.Variante B",13,10
            db "Seleccione: $"
+           
 selTematica db ?
 selVariante db ?
+EscribaString db "Escriba la palabra encontrada o EXIT para rendierse: $"
+
+
+             
+          
+epa db "$"
 
 
 Matriz1A   db  "P B C D E F G",13,10 
@@ -21,7 +28,7 @@ Matriz1A   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "A B C D E 1 A$"
+           db  "A B C D E 1 A $"
 
 Matriz1B   db  "P B C D E F G",13,10 
            db  "E B C D E F G",13,10 
@@ -29,7 +36,7 @@ Matriz1B   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "1 B C D E 1 B$"
+           db  "1 B C D E 1 B $"
 
 Matriz2A   db  "P B C D E F G",13,10 
            db  "E B C D E F G",13,10 
@@ -37,7 +44,7 @@ Matriz2A   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "A B C D E 2 A$"
+           db  "A B C D E 2 A $"
 
 Matriz2B   db  "P B C D E F G",13,10 
            db  "E B C D E F G",13,10 
@@ -45,7 +52,7 @@ Matriz2B   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "A B C D E 2 B$"
+           db  "A B C D E 2 B $"
            
 Matriz3A   db  "P B C D E F G",13,10 
            db  "E B C D E F G",13,10 
@@ -53,7 +60,7 @@ Matriz3A   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "A B C D E 3 A$"
+           db  "A B C D E 3 A $"
 
 Matriz3B   db  "P B C D E F G",13,10 
            db  "E B C D E F G",13,10 
@@ -61,8 +68,9 @@ Matriz3B   db  "P B C D E F G",13,10
            db  "R B C D E F G",13,10 
            db  "O B C D E F G",13,10 
            db  "A B C D E F G",13,10 
-           db  "A B C D E 3 B$"
+           db  "A B C D E 3 B $"
                   
+StringEscrito DB 20  dup(?)
 
 
 .code
@@ -78,7 +86,15 @@ int 21h
 
 call menu1
 call menu2
-call imprimirMatriz  
+call imprimirMatriz
+
+call inputString
+
+  mov ah, 09
+  lea dx, StringEscrito
+  int 21h 
+  call lineaNueva
+
 
 
 ;call imprimirMatriz1A 
@@ -260,8 +276,65 @@ imprimirMatriz3B proc near
   
   ret  
 imprimirMatriz3B endp
- 
 
+
+;INPUT STRING
+
+inputString proc near
+    call lineaNueva   
+     lea dx, EscribaString
+    mov ah, 09
+    int 21h
+   
+    mov si,offset StringEscrito
+    input: mov ah,1
+    int 21h
+    cmp al,13
+    je last
+    mov [si],al
+    inc si
+    jmp input
+    
+    
+    display: mov [si],'$'
+    mov di,offset StringEscrito
+    mov dl,13
+    mov ah,2
+    int 21h
+    mov dl,10
+    mov ah,2
+    int 21h
+
+again: cmp [di],'$'
+    je last
+    cmp [di],32
+    je next
+    mov dl,[di]
+    mov ah,2
+    int 21h
+    inc di
+    jmp again
+
+next: mov dl,13
+    mov ah,2
+    int 21h
+    mov dl,10
+    mov ah,2
+    int 21h
+    inc di
+    jmp again
+
+last: 
+mov [si],'$'
+call lineaNueva
+      
+
+         
+       
+    ret
+inputString endp 
+ 
+ 
  
 
 
