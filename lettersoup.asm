@@ -21,8 +21,6 @@ Win   db "Felicidades encontraste todo!$"
 EscribaString db "Escriba la palabra encontrada o EXIT para rendirse: $"
 
 
-             
-
   struneq db 'Strings are Unequal','$'          
 epa db "$"
  streq db "Felicidades encontraste la palabra: $"
@@ -34,21 +32,37 @@ resp1_4 db "GATO$"
 resp1_5 db "BUHO$"
 
 
-Matriz1A   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "A B C D E 1 A $"
+Matriz1A   db  "Q M O N O L M Y B M Q Y A Y M",13,10 
+           db  "B G A L N G Q F U F B F W H K",13,10 
+           db  "D P P H S X Q U I Y O Z G X K",13,10 
+           db  "S D M F Q X F O C A Q E G F R",13,10 
+           db  "R K Y Q A O O H T L W I P B Z",13,10 
+           db  "T K L I Z N C F U X Y M U V Y",13,10 
+           db  "J A D T A I A C V V W N X J Y",13,10 
+           db  "V J D A Q C X B V L N A W O E",13,10 
+           db  "M D X L H B U L U E H S B H R",13,10 
+           db  "F H H K U W Z Y A O D A L W G",13,10 
+           db  "Y I J Q J B M I Z N X A J K A",13,10 
+           db  "L X T R X R N J R V X S U X T",13,10 
+           db  "V E B P H C Q I Z H X A B T O",13,10
+           db  "W I I I G B U H O I F I O F Z",13,10
+           db  "F Y L R Y T P X M S L S M Z T $"
 
-Matriz1B   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "1 B C D E 1 B $" 
+Matriz1B   db  "B A M O R C S N U X J T W F W",13,10 
+           db  "C Y L G Y Z Y Q C O L L M O L",13,10 
+           db  "Z Z W E B F W I X A M Q C T N",13,10 
+           db  "A T F M O X P J E Z F B R A S",13,10 
+           db  "S V A T A N W J H P A O L G E",13,10 
+           db  "D R R R S R J A O K D I C D I",13,10
+           db  "F P D K A C M H P P W D N A C",13,10 
+           db  "H K Y Q N O U I T L W I P B Z",13,10 
+           db  "T M U M P B T E Z Y D O H F C",13,10 
+           db  "E Z M O X F H O D R Z M Q B Y",13,10 
+           db  "G N W M M G C L U Q U P Z K W",13,10 
+           db  "H K P M O N O C V L F J W I X",13,10
+           db  "Y R E W D S O B V V F Q U R P",13,10 
+           db  "K R W G Y N K R B J V U K C J",13,10 
+           db  "Q F A L R N Y B Q Y P A B O P $" 
 
 
 resp2_1 db "BICI$"
@@ -59,28 +73,44 @@ resp2_5 db "BOTE$"
 salidaJuego db "EXIT$"
 
 
-Matriz2A   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "A B C D E 2 A $"
+Matriz2A   db  "E F V Q P X W F B C S C R Q N",13,10 
+           db  "H A S T G Q Z Y L O A O T V B",13,10 
+           db  "S X B Z A M Y X C K G R Y X Z",13,10 
+           db  "R B J Q O J Z X G G Q M E C E",13,10 
+           db  "V V Y O G A R H Z M M P N A L",13,10 
+           db  "K A S B J V Y U G B B O T E Y",13,10
+           db  "M L Y O M H M Q R M B X X N Y",13,10 
+           db  "O S K V O O H G G B I G S F E",13,10 
+           db  "D Z X S T E O V B H A X X O C",13,10 
+           db  "H O M D O X I G I A U N I V B",13,10 
+           db  "G Q N Q P U A G C C T Q R I T",13,10 
+           db  "R Z M T U K M V I I O N L W I",13,10
+           db  "P B M F T S U D H U H A X I L",13,10 
+           db  "B P S H K X F M N P M W Y A E",13,10 
+           db  "W K Q N B V R H P Y S K L U M $"
 
-Matriz2B   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "A B C D E 2 B $"   
+Matriz2B   db  "Y L B J K Q Q W E B T S I I S",13,10 
+           db  "A U X R Y J D W F V O S A T D",13,10 
+           db  "F E A D B N S C Q E U T P J E",13,10 
+           db  "Q H I O K U A M P G U V E G C",13,10 
+           db  "R N L U T T H E Y W B L M D Q",13,10 
+           db  "H X E M N O L V Z N B G T H B",13,10
+           db  "E F Z R B G E I B Y Z W Q L F",13,10 
+           db  "S I A Y T H T G I J I K E Z Z",13,10 
+           db  "I C C Q Q O C Z S C C K K U Y",13,10 
+           db  "D Q O C D N R R E S I E G A T",13,10 
+           db  "N U B V O T O M A R B O H E N",13,10 
+           db  "X P A Z C R F N W O W C K S C",13,10
+           db  "Q V S Y M B R Y T E V E G X B",13,10 
+           db  "D Y L G W F M U J E D B Z N K",13,10 
+           db  "M A W R N O A G M U H V W Q E $"  
            
 
 resp3_1 db "JAVA$"
 resp3_2 db "RUBY$"
 resp3_3 db "PERL$"
 resp3_4 db "RUST$"
-resp3_5 db "LAVA$"
+resp3_5 db "DART$"
 
 validacionSensitive db 0
 
@@ -91,46 +121,49 @@ puntajeResp4 db 1
 puntajeResp5 db 1
 puntajeJuego db 0
            
-Matriz3A   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "A B C D E 3 A $"
+Matriz3A   db  "K N I X N F R U S T Y G E M P",13,10 
+           db  "M H W K H K N Y M B W A O Q K",13,10 
+           db  "V R C Z X N W A P M J H Z H R",13,10 
+           db  "C R U I W O G U N Q H V C B A",13,10 
+           db  "N W D B G L R F M G O V A L N",13,10 
+           db  "V T G I Y T F J I P C L Z T I",13,10
+           db  "Q N R D L F G O C W C S D O C",13,10 
+           db  "G X K Y V V E P Y J N V I R A",13,10 
+           db  "L P P H O V C J A V A H T L G",13,10 
+           db  "T C E N M G K H D E Y Q D C D",13,10 
+           db  "Z X R F I P Q X X W O D E Z N",13,10 
+           db  "U W L Q Y A T M R D V S A Y V",13,10
+           db  "N J F O P G D L M E R S F R J",13,10 
+           db  "W L J L Q U J G Q I H L E M T",13,10 
+           db  "H Y R H Z R Q U V H Q A V R Z $"
 
-Matriz3B   db  "P B C D E F G",13,10 
-           db  "E B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "R B C D E F G",13,10 
-           db  "O B C D E F G",13,10 
-           db  "A B C D E F G",13,10 
-           db  "A B C D E 3 B $"
+Matriz3B   db  "Z F O X V F W I J Y O N E P M",13,10 
+           db  "X L I C T I G A W Q K K S L X",13,10 
+           db  "A C B T K Y V W Z D Y P O P S",13,10 
+           db  "J V V X I A H Q Y N J B W J E",13,10 
+           db  "N H W N I K X B A D T B D P P",13,10 
+           db  "F L R M A A U D P K L R U M I",13,10
+           db  "T H J Y H R T Q U V H Q A V R",13,10 
+           db  "Z C R E F Q U Y B A A X W D X",13,10 
+           db  "A F S G P S Z R Q J Y A J T B",13,10 
+           db  "V S M R I A K B E Q P S K W L",13,10 
+           db  "P O N S F V S J C D Q A C K U",13,10 
+           db  "B M T G K N A L X C X N G H X",13,10
+           db  "D G B M B X J Z T S U R V H G",13,10 
+           db  "N K T W Z R J Y F L G A N J I",13,10 
+           db  "S I A Y T H T G I J I K E N T $"
 
-StringSensitive DB 20 dup(?)
-resp1 db 'Petern$'
-resp2 db 'Petern$'                  
+StringSensitive DB 20 dup(?)                 
 StringEscrito DB 20  dup(?)
 
 
 .code
 .start
-
-
-          
-
-   
+  
 mov ah, 09h
 lea dx, bienvenida
 int 21h
-
-
-;inicio
-
-
-
-;fin
-  
+ 
 
 call menu1
 call menu2
