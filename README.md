@@ -11,10 +11,10 @@ El programa le mostrará una matriz de letras de 15x15 donde se encontrarán 5 p
 temática que decida entre Animales, Vehículos de transporte y Lenguajes de programación.
 
 Si encuentra una palabra debe ingresarla por teclado.
-De ser correcta, se resaltará la palabra.
+De ser correcta, continuara el juego y acumulara puntos.
 De ser incorrecta, tendrá otro intento.
 
-Si desea retirarse, sólo debe escribir la palabra "retirar".
+Si desea retirarse, sólo debe escribir la palabra "exit".
 ```
 
 # Colaboradores

@@ -1,3 +1,4 @@
+; Autores > Erwing Burbano - Jeffrey Prado
 .model small
 .data    
 bienvenida db "Sopa de letras 15x15, bienvenido!",13,10,'$'
@@ -21,9 +22,9 @@ Win   db "Felicidades encontraste todo!$"
 EscribaString db "Escriba la palabra encontrada o EXIT para rendirse: $"
 
 
-  struneq db 'Strings are Unequal','$'          
+struneq db 'Strings are Unequal','$'          
 epa db "$"
- streq db "Felicidades encontraste la palabra: $"
+streq db "Felicidades encontraste la palabra: $"
 
 resp1_1 db "LEON$"
 resp1_2 db "MONO$"
