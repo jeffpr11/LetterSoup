@@ -150,7 +150,7 @@ jugar2:
 call juego2
 
 jugar3:
-
+call juego3
 
 
 
@@ -402,6 +402,41 @@ juego2 proc near
 juego2 endp
 
 ;FIN JUEGO 2
+
+
+;JUEGO 3    
+juego3 proc near
+    
+    pedir3:
+    call inputString
+    call caseSensitive
+    
+    cmp validacionSensitive, 1
+    je pedir3
+    
+    call compareStringsExit
+    call compareStrings3_1
+    call compareStrings3_2
+    call compareStrings3_3
+    call compareStrings3_4
+    call compareStrings3_5
+    
+    cmp puntajeJuego , 5
+    je ganasteJuego3
+    jmp pedir3:
+    
+    ganasteJuego3:
+    lea dx, Win
+    mov ah, 09
+    int 21h
+    
+    mov  ax,4c00h
+    int  21h
+   ret
+juego3 endp
+
+;FIN JUEGO 3
+
 
 
 
@@ -804,6 +839,163 @@ compareStrings2_5 proc near
      
    ret
 compareStrings2_5 endp  
+
+
+
+compareStrings3_1 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp3_1
+    rep cmpsb
+    jnz Not_Equal3_1
+    lea dx, streq
+    jmp Equal3_1 
+
+    Not_Equal3_1:
+    jmp finComparar3_1
+
+    Equal3_1:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp3_1  
+    int 21h
+    mov al, puntajeResp1
+    add puntajeJuego, al
+    mov puntajeResp1, 0 
+    call lineaNueva
+    finComparar3_1:
+     
+   ret
+compareStrings3_1 endp
+     
+     
+compareStrings3_2 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp3_2
+    rep cmpsb
+    jnz Not_Equal3_2
+    lea dx, streq
+    jmp Equal3_2 
+
+    Not_Equal3_2:
+    jmp finComparar3_2
+
+    Equal3_2:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp3_2  
+    int 21h
+    mov al, puntajeResp2
+    add puntajeJuego, al
+    mov puntajeResp2, 0 
+    call lineaNueva
+    finComparar3_2:
+     
+   ret
+compareStrings3_2 endp 
+        
+        
+compareStrings3_3 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp3_3
+    rep cmpsb
+    jnz Not_Equal3_3
+    lea dx, streq
+    jmp Equal3_3 
+
+    Not_Equal3_3:
+    jmp finComparar3_3
+
+    Equal3_3:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp3_3  
+    int 21h
+    mov al, puntajeResp3
+    add puntajeJuego, al
+    mov puntajeResp3, 0 
+    call lineaNueva
+    finComparar3_3:
+     
+   ret
+compareStrings3_3 endp 
+        
+        
+compareStrings3_4 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp3_4
+    rep cmpsb
+    jnz Not_Equal3_4
+    lea dx, streq
+    jmp Equal3_4 
+
+    Not_Equal3_4:
+    jmp finComparar3_4
+
+    Equal3_4:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp3_4  
+    int 21h
+    mov al, puntajeResp4
+    add puntajeJuego, al
+    mov puntajeResp4, 0 
+    call lineaNueva
+    finComparar3_4:
+     
+   ret
+compareStrings3_4 endp 
+         
+         
+compareStrings3_5 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp3_5
+    rep cmpsb
+    jnz Not_Equal3_5
+    lea dx, streq
+    jmp Equal3_5 
+
+    Not_Equal3_5:
+    jmp finComparar3_5
+
+    Equal3_5:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp3_5  
+    int 21h
+    mov al, puntajeResp5
+    add puntajeJuego, al
+    mov puntajeResp5, 0 
+    call lineaNueva
+    finComparar3_5:
+     
+   ret
+compareStrings3_5 endp  
+
 
 
 
