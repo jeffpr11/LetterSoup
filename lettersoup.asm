@@ -15,6 +15,8 @@ opVariante db  "Existen 2 tipos de variante disponibles",13,10
 selTematica db ?
 selVariante db ?
 onlyLetras db "Escriba solo letras$"
+Sorry db "Gracias por jugar, intentalo de nuevo! $"
+Win   db "Felicidades encontraste todo!$"
 
 EscribaString db "Escriba la palabra encontrada o EXIT para rendierse: $"
 
@@ -190,9 +192,9 @@ menu2 proc near
     int 21h     
     sub al, 30h
     cmp al, 2
-    jg inicio
+    jg inicio2
     cmp al, 1
-    jl inicio 
+    jl inicio2 
     mov selVariante, al   
     ret  
 menu2 endp
@@ -315,8 +317,8 @@ imprimirMatriz2B proc near
   call lineaNueva 
   call lineaNueva
     mov ah, 09
-  lea dx, Matriz2B
-  int 21h  
+    lea dx, Matriz2B
+    int 21h  
   
   ret  
 imprimirMatriz2B endp
@@ -344,6 +346,7 @@ juego1 proc near
     cmp validacionSensitive, 1
     je pedir
     
+    call compareStringsExit
     call compareStrings1_1
     call compareStrings1_2
     call compareStrings1_3
@@ -355,8 +358,13 @@ juego1 proc near
     jmp pedir:
     
     ganasteJuego1:
+    lea dx, Win
+    mov ah, 09
+    int 21h
     
-    
+    mov  ax,4c00h
+    int  21h
+
 
     
     
@@ -428,35 +436,33 @@ inputString endp
 
 ; << COMPARAR STRINGS >>
 ;COMPARE STRINGS
-compareStrings1_1 proc near
+compareStringsExit proc near
    mov ax, data
     mov ds, ax
     mov es, ax
     mov cx, 4
     lea si, StringSensitive
-    lea di, resp1_1
+    lea di, salidaJuego
     rep cmpsb
-    jnz Not_Equal1_1
-    lea dx, streq
-    jmp Equal1_1 
+    jnz Not_Equal0
+    lea dx, Sorry
+    jmp Equal0 
 
-    Not_Equal1_1:
-    jmp finComparar1_1
+    Not_Equal0:
+    jmp finComparar0
 
-    Equal1_1:
+    Equal0:
     ;call lineaNueva 
     mov ah, 09h
     int 21h 
-    lea dx, resp1_1  
-    int 21h
-    mov al, puntajeResp1
-    add puntajeJuego, al
-    mov puntajeResp1, 0 
+    mov  ax,4c00h
+    int  21h
+       
     call lineaNueva
-    finComparar1_1:
+    finComparar0:
      
    ret
-compareStrings1_1 endp
+compareStringsExit endp
 
 
 
