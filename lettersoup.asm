@@ -18,7 +18,7 @@ onlyLetras db "Escriba solo letras$"
 Sorry db "Gracias por jugar, intentalo de nuevo! $"
 Win   db "Felicidades encontraste todo!$"
 
-EscribaString db "Escriba la palabra encontrada o EXIT para rendierse: $"
+EscribaString db "Escriba la palabra encontrada o EXIT para rendirse: $"
 
 
              
@@ -147,6 +147,7 @@ jugar1:
 call juego1
 
 jugar2:
+call juego2
 
 jugar3:
 
@@ -364,16 +365,44 @@ juego1 proc near
     
     mov  ax,4c00h
     int  21h
-
-
-    
-    
-    ret
+   ret
 juego1 endp
 
-
-
 ;FIN JUEGO 1
+
+;JUEGO 2    
+juego2 proc near
+    
+    pedir2:
+    call inputString
+    call caseSensitive
+    
+    cmp validacionSensitive, 1
+    je pedir2
+    
+    call compareStringsExit
+    call compareStrings2_1
+    call compareStrings2_2
+    call compareStrings2_3
+    call compareStrings2_4
+    call compareStrings2_5
+    
+    cmp puntajeJuego , 5
+    je ganasteJuego2
+    jmp pedir2:
+    
+    ganasteJuego2:
+    lea dx, Win
+    mov ah, 09
+    int 21h
+    
+    mov  ax,4c00h
+    int  21h
+   ret
+juego2 endp
+
+;FIN JUEGO 2
+
 
 
 ;INPUT STRING
@@ -495,7 +524,8 @@ compareStrings1_1 proc near
      
    ret
 compareStrings1_1 endp
-
+     
+     
 compareStrings1_2 proc near
    mov ax, data
     mov ds, ax
@@ -525,7 +555,8 @@ compareStrings1_2 proc near
      
    ret
 compareStrings1_2 endp 
-
+        
+        
 compareStrings1_3 proc near
    mov ax, data
     mov ds, ax
@@ -555,7 +586,8 @@ compareStrings1_3 proc near
      
    ret
 compareStrings1_3 endp 
-
+        
+        
 compareStrings1_4 proc near
    mov ax, data
     mov ds, ax
@@ -585,7 +617,8 @@ compareStrings1_4 proc near
      
    ret
 compareStrings1_4 endp 
-
+         
+         
 compareStrings1_5 proc near
    mov ax, data
     mov ds, ax
@@ -614,7 +647,167 @@ compareStrings1_5 proc near
     finComparar1_5:
      
    ret
-compareStrings1_5 endp 
+compareStrings1_5 endp  
+
+
+
+compareStrings2_1 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp2_1
+    rep cmpsb
+    jnz Not_Equal2_1
+    lea dx, streq
+    jmp Equal2_1 
+
+    Not_Equal2_1:
+    jmp finComparar2_1
+
+    Equal2_1:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp2_1  
+    int 21h
+    mov al, puntajeResp1
+    add puntajeJuego, al
+    mov puntajeResp1, 0 
+    call lineaNueva
+    finComparar2_1:
+     
+   ret
+compareStrings2_1 endp
+     
+     
+compareStrings2_2 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp2_2
+    rep cmpsb
+    jnz Not_Equal2_2
+    lea dx, streq
+    jmp Equal2_2 
+
+    Not_Equal2_2:
+    jmp finComparar2_2
+
+    Equal2_2:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp2_2  
+    int 21h
+    mov al, puntajeResp2
+    add puntajeJuego, al
+    mov puntajeResp2, 0 
+    call lineaNueva
+    finComparar2_2:
+     
+   ret
+compareStrings2_2 endp 
+        
+        
+compareStrings2_3 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp2_3
+    rep cmpsb
+    jnz Not_Equal2_3
+    lea dx, streq
+    jmp Equal2_3 
+
+    Not_Equal2_3:
+    jmp finComparar2_3
+
+    Equal2_3:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp2_3  
+    int 21h
+    mov al, puntajeResp3
+    add puntajeJuego, al
+    mov puntajeResp3, 0 
+    call lineaNueva
+    finComparar2_3:
+     
+   ret
+compareStrings2_3 endp 
+        
+        
+compareStrings2_4 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp2_4
+    rep cmpsb
+    jnz Not_Equal2_4
+    lea dx, streq
+    jmp Equal2_4 
+
+    Not_Equal2_4:
+    jmp finComparar2_4
+
+    Equal2_4:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp2_4  
+    int 21h
+    mov al, puntajeResp4
+    add puntajeJuego, al
+    mov puntajeResp4, 0 
+    call lineaNueva
+    finComparar2_4:
+     
+   ret
+compareStrings2_4 endp 
+         
+         
+compareStrings2_5 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp2_5
+    rep cmpsb
+    jnz Not_Equal2_5
+    lea dx, streq
+    jmp Equal2_5 
+
+    Not_Equal2_5:
+    jmp finComparar2_5
+
+    Equal2_5:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp2_5  
+    int 21h
+    mov al, puntajeResp5
+    add puntajeJuego, al
+    mov puntajeResp5, 0 
+    call lineaNueva
+    finComparar2_5:
+     
+   ret
+compareStrings2_5 endp  
+
+
+
+
 ;FIN Compare STRINGS
 ;<< FIN COMPARAR STRINGS >>
 
