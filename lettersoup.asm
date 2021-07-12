@@ -20,10 +20,10 @@ EscribaString db "Escriba la palabra encontrada o EXIT para rendierse: $"
 
 
              
- streq db 'Felicidades encontraste la palabra: ','$'
+
   struneq db 'Strings are Unequal','$'          
 epa db "$"
-
+ streq db "Felicidades encontraste la palabra: $"
 
 resp1_1 db "LEON$"
 resp1_2 db "MONO$"
@@ -54,6 +54,7 @@ resp2_2 db "MOTO$"
 resp2_3 db "AUTO$"
 resp2_4 db "TREN$"
 resp2_5 db "BOTE$"
+salidaJuego db "EXIT$"
 
 
 Matriz2A   db  "P B C D E F G",13,10 
@@ -148,9 +149,7 @@ jugar2:
 jugar3:
 
 
-call inputString
-call caseSensitive
-call compareStrings
+
 
 
 
@@ -351,6 +350,11 @@ juego1 proc near
     call compareStrings1_4
     call compareStrings1_5
     
+    cmp puntajeJuego , 5
+    je ganasteJuego1
+    jmp pedir:
+    
+    ganasteJuego1:
     
     
 
@@ -432,15 +436,15 @@ compareStrings1_1 proc near
     lea si, StringSensitive
     lea di, resp1_1
     rep cmpsb
-    jnz Not_Equal
+    jnz Not_Equal1_1
     lea dx, streq
-    jmp Equal 
+    jmp Equal1_1 
 
-    Not_Equal:
-    jmp finComparar
+    Not_Equal1_1:
+    jmp finComparar1_1
 
-    Equal:
-    call lineaNueva 
+    Equal1_1:
+    ;call lineaNueva 
     mov ah, 09h
     int 21h 
     lea dx, resp1_1  
@@ -449,10 +453,162 @@ compareStrings1_1 proc near
     add puntajeJuego, al
     mov puntajeResp1, 0 
     call lineaNueva
-    finComparar:
+    finComparar1_1:
      
    ret
-compareStrings1_1 endp 
+compareStrings1_1 endp
+
+
+
+compareStrings1_1 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp1_1
+    rep cmpsb
+    jnz Not_Equal1_1
+    lea dx, streq
+    jmp Equal1_1 
+
+    Not_Equal1_1:
+    jmp finComparar1_1
+
+    Equal1_1:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp1_1  
+    int 21h
+    mov al, puntajeResp1
+    add puntajeJuego, al
+    mov puntajeResp1, 0 
+    call lineaNueva
+    finComparar1_1:
+     
+   ret
+compareStrings1_1 endp
+
+compareStrings1_2 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp1_2
+    rep cmpsb
+    jnz Not_Equal1_2
+    lea dx, streq
+    jmp Equal1_2 
+
+    Not_Equal1_2:
+    jmp finComparar1_2
+
+    Equal1_2:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp1_2  
+    int 21h
+    mov al, puntajeResp2
+    add puntajeJuego, al
+    mov puntajeResp2, 0 
+    call lineaNueva
+    finComparar1_2:
+     
+   ret
+compareStrings1_2 endp 
+
+compareStrings1_3 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp1_3
+    rep cmpsb
+    jnz Not_Equal1_3
+    lea dx, streq
+    jmp Equal1_3 
+
+    Not_Equal1_3:
+    jmp finComparar1_3
+
+    Equal1_3:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp1_3  
+    int 21h
+    mov al, puntajeResp3
+    add puntajeJuego, al
+    mov puntajeResp3, 0 
+    call lineaNueva
+    finComparar1_3:
+     
+   ret
+compareStrings1_3 endp 
+
+compareStrings1_4 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp1_4
+    rep cmpsb
+    jnz Not_Equal1_4
+    lea dx, streq
+    jmp Equal1_4 
+
+    Not_Equal1_4:
+    jmp finComparar1_4
+
+    Equal1_4:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp1_4  
+    int 21h
+    mov al, puntajeResp4
+    add puntajeJuego, al
+    mov puntajeResp4, 0 
+    call lineaNueva
+    finComparar1_4:
+     
+   ret
+compareStrings1_4 endp 
+
+compareStrings1_5 proc near
+   mov ax, data
+    mov ds, ax
+    mov es, ax
+    mov cx, 4
+    lea si, StringSensitive
+    lea di, resp1_5
+    rep cmpsb
+    jnz Not_Equal1_5
+    lea dx, streq
+    jmp Equal1_5 
+
+    Not_Equal1_5:
+    jmp finComparar1_5
+
+    Equal1_5:
+    ;call lineaNueva 
+    mov ah, 09h
+    int 21h 
+    lea dx, resp1_5  
+    int 21h
+    mov al, puntajeResp5
+    add puntajeJuego, al
+    mov puntajeResp5, 0 
+    call lineaNueva
+    finComparar1_5:
+     
+   ret
+compareStrings1_5 endp 
 ;FIN Compare STRINGS
 ;<< FIN COMPARAR STRINGS >>
 
