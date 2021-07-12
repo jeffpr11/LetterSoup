@@ -532,7 +532,10 @@ inputString endp
  
 
 ; << COMPARAR STRINGS >>
-;COMPARE STRINGS
+;COMPARE STRINGS: funciones para comparar strings directamente con las respuestas pre definidas
+;                 se identifican con #_#, siendo el primero numero la categoria y el segundo numero la variante
+;                 si son iguales aumenta el puntaje
+;                 si no son iguales termina de comparar y vuelve a permitir el ingreso de palabra
 compareStringsExit proc near
    mov ax, data
     mov ds, ax
@@ -1028,15 +1031,16 @@ compareStrings3_5 proc near
      
    ret
 compareStrings3_5 endp  
-
-
-
-
-
 ;FIN Compare STRINGS
 ;<< FIN COMPARAR STRINGS >>
 
-;Case sentitive
+
+
+  
+; << CASE SENSITIVE >>
+;CASE SENSITIVE:  valida el ingreso de palabra, confirma que el ingreso solo sea letras(sin importar mayusculas o minsculas)
+;                 si no todo es letra, pide la palabra de vuelta indicando el ingreso correcto
+;                 si todo es letra, transforma todo a mayusculas y guarda la palabra en StringSensitive
 caseSensitive proc near
     mov ax, 0h
     mov bx, offset StringEscrito
