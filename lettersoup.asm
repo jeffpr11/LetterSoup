@@ -159,16 +159,16 @@ StringEscrito DB 20  dup(?)
 
 .code
 .start
-  
+;Mensaje de Bienvenida  
 mov ah, 09h
 lea dx, bienvenida
 int 21h
  
-
+;Mostramos los menus de seleccion con validaciones
 call menu1
 call menu2
-call imprimirMatriz
 
+;Dependiendo de la seleccion se escoge la sopa de letras a jugar
 cmp selTematica, 1
 je jugar1
 cmp selTematica, 2
@@ -189,12 +189,12 @@ call juego3
 
 
 
-;call imprimirMatriz1A 
-
 jmp fin
 
 ;<<-- FUNCIONES -- >> 
-;MENU1
+
+;MENU1 
+;Menu para seleccionar la tematica
 menu1 proc near
     inicio: 
     call lineaNueva 
@@ -215,6 +215,7 @@ menu1 endp
 ;FIN Menu1
 
 ;MENU2
+;Menu para seleccionar la variante
 menu2 proc near
     inicio2: 
     call lineaNueva 
@@ -235,6 +236,7 @@ menu2 endp
 ;FIN Menu1
 
 ;INICIO ImprimirMatriz
+;Dependiendo de las selecciones del menu se imprime una sopa de letras
 imprimirMatriz proc near
   call lineaNueva 
   call lineaNueva
@@ -369,17 +371,23 @@ imprimirMatriz3B proc near
   ret  
 imprimirMatriz3B endp
 
-
+;<<  JUEGOS  >>
+;Dependiendo de la seleccion de los menus se decide el juego en el cual se muestra la matriz 
+;Luego con un mensaje se solicita que se ingrese un string y cuando se presione enter se recibe
+;Confirma que solo sean letras y hace un UPPERCASE, luego compara las respuestas o exit
+;Si logra encontrar todas las respuestas gana el juego y se felicita con un mensaje
 ;JUEGO 1    
 juego1 proc near
     
     pedir:
+    call imprimirMatriz         ;Imprime la matriz que se esta jugando para visualizacion
+     call lineaNueva 
     call inputString
-    call caseSensitive
+    call caseSensitive          ;Prueba si la palabra son solo letras en ese caso hace que todas sean mayusculas
     
     cmp validacionSensitive, 1
     je pedir
-    
+                                ;Compara lo escrito para las respuestas esperadas o exit
     call compareStringsExit
     call compareStrings1_1
     call compareStrings1_2
@@ -387,11 +395,11 @@ juego1 proc near
     call compareStrings1_4
     call compareStrings1_5
     
-    cmp puntajeJuego , 5
+    cmp puntajeJuego , 5        ;Revisa el puntaje del juego para ver si se ha ganado
     je ganasteJuego1
     jmp pedir:
     
-    ganasteJuego1:
+    ganasteJuego1:              ;Se gano el juego presentando un mensaje y escribiendo 
     lea dx, Win
     mov ah, 09
     int 21h
@@ -407,6 +415,8 @@ juego1 endp
 juego2 proc near
     
     pedir2:
+    call imprimirMatriz 
+     call lineaNueva 
     call inputString
     call caseSensitive
     
@@ -441,6 +451,8 @@ juego2 endp
 juego3 proc near
     
     pedir3:
+    call imprimirMatriz 
+     call lineaNueva 
     call inputString
     call caseSensitive
     
@@ -474,7 +486,9 @@ juego3 endp
 
 
 ;INPUT STRING
-
+;Un procedimiento que muestra un mensaje pidiendole al usuario el ingreso de una palabra
+;La palabra escrita puede ser de maximo size 20, al final se agrega el signo $ para delimitar la palabra
+;cuando el usuario presiona enter la palabra se termina y es guardada en StringEscrito
 inputString proc near
     call lineaNueva   
      lea dx, EscribaString
@@ -1092,6 +1106,7 @@ caseSensitive endp
 
 
 ;JUMPLINE
+;Un procedimiento que simplemente realiza un salto de linea por pantalla
 lineaNueva proc near
     MOV dl, 10
     MOV ah, 02h
